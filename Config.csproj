@@ -35,6 +35,8 @@ AppSettings.Get&lt;bool&gt;("logSection", typeof(MyClass), "Timestamp")</Descrip
     <RepositoryUrl>https://github.com/efieleke/Config</RepositoryUrl>
     <PackageId>Sayer.Config</PackageId>
     <PackageTags>settings config app.config configuration ConfigurationSection</PackageTags>
+    <Copyright>Copyright (c) 2021 Eric Fieleke</Copyright>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
