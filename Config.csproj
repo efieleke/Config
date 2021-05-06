@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Eric Fieleke</Authors>
+    <Company>Sayer</Company>
+    <Product>Config</Product>
+    <Description>Class for retrieving settings from app.config, optionally related to a type. A separate project exits for web.config files.
+
+Below is an example for a config file, which assumes the existence of class Base, as well as classes Buggy and Stable, which inherit from Base (all in the same assembly). In the example, type Buggy has log level Debug, Stable has level Error, and all other derivatives of Base have level Warn. Classes not inheriting from Base have level Info. All types have Timestamp set to true in the example.
+
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name = "logSection" type="Sayer.Config.ConfigSection,Sayer.Config"/&gt;
+  &lt;/configSections&gt;
+  &lt;logSection&gt;
+    &lt;field name="LogLevel" value="Info"/&gt;
+    &lt;field name="Base.LogLevel" value="Warn"/&gt;
+    &lt;field name="Base.Buggy.LogLevel" value="Debug"/&gt;
+    &lt;field name="Base.Stable.LogLevel" value="Error"/&gt;
+    &lt;field name="Timestamp" value="true"/&gt;
+  &lt;/logSection&gt;
+&lt;configuration/&gt;
+
+The following statement, given the .config settings below, would return the value Debug:
+AppSettings.Get&lt;LogLevel&gt;("logSection", typeof(Buggy), "LogLevel");
+
+The following statement would return the value Info:
+AppSettings.Get&lt;LogLevel&gt;("logSection", "LogLevel");
+
+And the following statement would return true:
+AppSettings.Get&lt;bool&gt;("logSection", typeof(MyClass), "Timestamp")</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/efieleke/Config</RepositoryUrl>
+    <PackageId>Sayer.Config</PackageId>
+    <PackageTags>settings config app.config configuration ConfigurationSection</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Test\**" />
+    <EmbeddedResource Remove="Test\**" />
+    <None Remove="Test\**" />
+    <None Include="..\efieleke\Utils\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="packages\MSTest.TestAdapter.2.1.2\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
