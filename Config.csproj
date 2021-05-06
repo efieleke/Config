@@ -38,17 +38,16 @@ AppSettings.Get&lt;bool&gt;("logSection", typeof(MyClass), "Timestamp")</Descrip
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="packages\**" />
     <Compile Remove="Test\**" />
+    <EmbeddedResource Remove="packages\**" />
     <EmbeddedResource Remove="Test\**" />
+    <None Remove="packages\**" />
     <None Remove="Test\**" />
-    <None Include="..\efieleke\Utils\LICENSE">
+    <None Include="LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="packages\MSTest.TestAdapter.2.1.2\LICENSE.txt" />
   </ItemGroup>
 
   <ItemGroup>
